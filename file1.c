@@ -1,6 +1,6 @@
 #include "main.h"
-#include <unistd.h>
 #include <stdarg.h>
+#include <unistd.h>
 
 /**
  * _printf - Produces output according to a format.
@@ -51,6 +51,33 @@ int _printf(const char *format, ...)
             {
                 write(1, "%", 1);
                 printed_chars++;
+            }
+            else if (*format == 'd' || *format == 'i')
+            {
+                int n = va_arg(args, int);
+                int count = 0;
+                int temp = n;
+                while (temp != 0)
+                {
+                    temp /= 10;
+                    count++;
+                }
+                if (n < 0)
+                {
+                    write(1, "-", 1);
+                    printed_chars++;
+                }
+                while (count > 0)
+                {
+                    int divisor = 1;
+                    for (int i = 1; i < count; i++)
+                        divisor *= 10;
+                    char digit = n / divisor + '0';
+                    write(1, &digit, 1);
+                    printed_chars++;
+                    n %= divisor;
+                    count--;
+                }
             }
         }
         format++;
