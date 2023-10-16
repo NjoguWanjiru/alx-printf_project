@@ -35,8 +35,5 @@ int main(void)
     _printf("Address:[%p]\n", addr);
     printf("Address:[%p]\n", addr);
 
-        /* Test cases for %d and %i*/
-    _printf("Integer:[%d, %i]\n", 123, -456);
-    printf("Integer:[%d, %i]\n", 123, -456);
     return (0);
 }
